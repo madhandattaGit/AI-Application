@@ -10,13 +10,13 @@ from pydantic import BaseModel, ConfigDict, Field
 app = FastAPI()
 logger = logging.getLogger(__name__)
 
-# ✅ CORS configuration (IMPORTANT for frontend communication)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://127.0.0.1:5500"],  # Live Server URL
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+)
 )
 
 # ✅ Input schema

@@ -2,63 +2,34 @@
 <html>
 <head>
     <title>AI Summarizer</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-        }
-
-        textarea {
-            width: 100%;
-            max-width: 600px;
-            height: 150px;
-            padding: 10px;
-            font-size: 14px;
-        }
-
-        button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        #output {
-            margin-top: 20px;
-            font-weight: bold;
-            max-width: 600px;
-        }
-    </style>
 </head>
-
 <body>
 
-    <h1>AI Text Summarizer</h1>
+<h1>AI Text Summarizer</h1>
 
-    <textarea id="inputText" placeholder="Enter text here..."></textarea>
+<textarea id="inputText" rows="10" cols="60" placeholder="Enter text here..."></textarea>
+<br><br>
 
-    <br>
+<button onclick="summarize()">Summarize</button>
 
-    <button onclick="summarize()">Summarize</button>
+<h3>Summary:</h3>
+<p id="output"></p>
 
-    <h3>Summary:</h3>
-    <p id="output"></p>
+<script>
+function summarize() {
+    const text = document.getElementById("inputText").value;
 
-    <script>
-        function summarize() {
-            const text = document.getElementById("inputText").value;
+    if (!text.trim()) {
+        document.getElementById("output").innerText = "Please enter some text.";
+        return;
+    }
 
-            if (!text.trim()) {
-                document.getElementById("output").innerText = "Please enter some text.";
-                return;
-            }
+    const words = text.split(" ");
+    const summary = words.slice(0, 20).join(" ");
 
-            // Simple summarization logic (first 20 words)
-            const summary = text.split(" ").slice(0, 20).join(" ");
-
-            document.getElementById("output").innerText = summary;
-        }
-    </script>
+    document.getElementById("output").innerText = summary;
+}
+</script>
 
 </body>
 </html>
